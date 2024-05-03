@@ -1,0 +1,51 @@
+Id,carType,carMerk
+TAG,Toyota,Agya
+TAL,Toyota,Alphard
+TAV,Toyota,Avanza
+TCA,Toyota,Calya
+TCM,Toyota,Camry
+TCO,Toyota,Corolla Altis
+TET,Toyota,Etios
+TETV,Toyota,Etios Valco
+TFO,Toyota,Fortuner
+THA,Toyota,Harrier
+TKI,Toyota,Kijang
+TKIN,Toyota,Kijang Innova
+TRA,Toyota,Raize
+TRU,Toyota,Rush
+TSI,Toyota,Sienta
+TVI,Toyota,Vios
+TVO,Toyota,Voxy
+TYA,Toyota,Yaris
+DAY,Daihatsu,Ayla
+DGR,Daihatsu,Gran Max
+DLU,Daihatsu,Luxio
+DRO,Daihatsu,Rocky
+DSI,Daihatsu,Sigra
+DSIR,Daihatsu,Sirion
+DTE,Daihatsu,Terios
+DXE,Daihatsu,Xenia
+HBR,Honda,BR-V
+HBRI,Honda,Brio
+HBRS,Honda,Brio Satya
+HCI,Honda,City
+HCIV,Honda,Civic
+HCRV,Honda,CR-V
+HFR,Honda,Freed
+HHRV,Honda,HR-V
+HJZ,Honda,Jazz
+HMO,Honda,Mobilio
+HOD,Honda,Odyssey
+SAPV,Suzuki,APV
+SAPVA,Suzuki,APV Arena
+SBA,Suzuki,Baleno
+SER,Suzuki,Ertiga
+SIG,Suzuki,Ignis
+SKAR,Suzuki,Karimun
+SKARE,Suzuki,Karimun Estillo
+SKARW,Suzuki,Karimun Wagon
+SKARWR,Suzuki,Karimun Wagon R
+SSPL,Suzuki,Splash
+SSWI,Suzuki,Swift
+SSX4,Suzuki,SX4
+SXL4,Suzuki,XL7

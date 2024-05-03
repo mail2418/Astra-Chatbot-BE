@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+// ================= MODEL & MIGRATE ===================
+model Car {
+  id String @id @unique
+  carType String @db.VarChar(25)
+  carMerk String @db.VarChar(25)
+  carList CarList[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+model CarList {
+  id String @id @default(uuid())
+  car Car @relation(fields: [carId], references: [id])
+  carId String
+  carYear Int @db.UnsignedInt
+  carPrice Int @db.UnsignedInt
+  carLoan Int @db.UnsignedInt
+  kmStart Int @db.UnsignedInt
+  kmEnd Int @db.UnsignedInt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
