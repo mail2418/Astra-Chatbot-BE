@@ -4,22 +4,36 @@ const prisma = new PrismaClient();
 class carListRepository {
   async getListCarByCriteria() {
     try {
-      const carList = await prisma.carList.findMany({
-
+        const carList = await prisma.carList.findMany({
       });
-      return carList
+        return carList
     } catch (e) {
-      console.error("Error in GET list of cars by criteria", e);
-      throw e;
+        console.error("Error in GET list of cars by criteria", e);
+        throw e;
     }
   }
   async getListCar() {
     try {
-      const carList = await prisma.carList.findMany();
-      return carList
+        const carList = await prisma.carList.findMany();
+        return carList
     } catch (e) {
-      console.error("Error in GET list of cars", e);
-      throw e;
+        console.error("Error in GET list of cars", e);
+        throw e;
+    }
+  }
+  async getCarPriceById(id:string){
+    try {
+      const carPrice = await prisma.carList.findUnique({
+        where:{
+          id:id
+        },
+        select:{
+          carPrice: true
+        }
+      });
+      return carPrice
+    }catch(err){
+
     }
   }
 }

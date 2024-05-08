@@ -9,7 +9,7 @@ class loanRoutes {
         this.initRoutes()
     }
     initRoutes(){
-        this.router.get('/getloancars', loanController.getLoan)
+        this.router.get('/getloancars', loanController.getLoanCalculation)
     }
 }
 

@@ -5,18 +5,18 @@ class carListController {
         try{
             console.log(req.body)
 
-            const carType:any = req.params.carType
-            const carMerk:any = req.params.carMerk
-            const kmStart:any = req.params.kmStart
-            const kmEnd:any = req.params.kmEnd
-            const carPrice:any = req.params.carPrice
-            const carYear:any = req.params.carYear
+            // const carType:any = req.params.carType
+            // const carMerk:any = req.params.carMerk
+            // const kmStart:any = req.params.kmStart
+            // const kmEnd:any = req.params.kmEnd
+            // const carPrice:any = req.params.carPrice
+            // const carYear:any = req.params.carYear
 
-            const carLists = await carListService.getListCarByCriteria()
+            // const carLists = await carListService.getListCarByCriteria()
             return res.status(200).json({
                 "messages": "success get list of cars by criteria",
                 "status":200,
-                "data":carLists
+                // "data":carLists
             })
         }catch(err){
             console.log(err)

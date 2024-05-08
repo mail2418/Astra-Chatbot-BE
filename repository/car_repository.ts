@@ -4,11 +4,11 @@ const prisma  = new PrismaClient();
 class carRepository {
   async getCarType() {
     try {
-      const cars = await prisma.car.findMany();
-      return cars;
+        const cars = await prisma.car.findMany();
+        return cars;
     } catch (e) {
-      console.error("Error in GET Type Car", e);
-      throw e;
+        console.error("Error in GET Type Car", e);
+        throw e;
     }
   }
 }
