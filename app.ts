@@ -2,7 +2,10 @@ import type { Express,Router } from "express";
 const express = require("express")
 const cors = require('cors');
 const morgan = require('morgan');
-const LoanRoutes:Router = require('./router/loan_routes')
+const carRoutes = require('./router/car_routes')
+const carListRoutes = require('./router/carlist_routes')
+const loanRoutes = require('./router/loan_routes')
+
 class Chatbot {
   app: Express;
   port : string | undefined;
@@ -19,7 +22,9 @@ class Chatbot {
     this.app.use(morgan("combined"))
   }
   configureRoutes() {
-    this.app.use('/api/loan',LoanRoutes)
+    this.app.use('/api/car',carRoutes)
+    this.app.use('/api/carlist',carListRoutes)
+    this.app.use('/api/loan',loanRoutes)
   }
   start(){
     this.app.listen(this.port, () => {

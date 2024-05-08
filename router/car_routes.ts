@@ -1,16 +1,16 @@
 import type { Router } from "express";
 const express = require("express")
-const loanController = require("../controller/loan_controller")
+const carController = require("../controller/car_controller")
 
-class loanRoutes {
+class carRoutes {
     router: Router
     constructor(){
         this.router = express.Router()
         this.initRoutes()
     }
     initRoutes(){
-        this.router.get('/getloancars', loanController.getLoan)
+        this.router.get('/getcars', carController.getCars)
     }
 }
 
-module.exports = new loanRoutes().router
+module.exports = new carRoutes().router

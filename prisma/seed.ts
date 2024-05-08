@@ -25,7 +25,7 @@ const seedCars = async (filePath: string) => {
         .pipe(csv())
         .on('data', (data: CarRow) => carDatas.push(data))
         .on('end', async () => {
-            const jsonCarDatas: Prisma.CarCreateManyInput = carDatas.map(car => ({
+            const jsonCarDatas: any = carDatas.map(car => ({
                 id: car.id,
                 carType: car.carType,
                 carMerk: car.carMerk,
@@ -51,7 +51,7 @@ const seedCarLists = async (filePath: string) => {
         .pipe(csv())
         .on('data', (data: CarListRow) => carListDatas.push(data))
         .on('end', async () => {
-            const jsonCarListDatas: Prisma.CarListCreateManyInput = carListDatas.map(car => {
+            const jsonCarListDatas: any = carListDatas.map(car => {
                 let newCarPrice = car.carPrice.split("Rp")[1].split(".")[0].replace(/,/g, '');
                 return {
                     carId: car.carId,

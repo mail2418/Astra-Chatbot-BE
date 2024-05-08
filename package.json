@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run app.ts",
+    "start": "bun --watch --env_file=.env.development run app.ts",
     "db:seed": "bunx prisma db seed",
     "db:migrate": "bunx prisma migrate dev --skip-seed",
     "db:reset": "bunx prisma migrate reset --skip-seed --force",
@@ -13,7 +13,6 @@
     "seed": "bun prisma/seed.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "@types/node": "^20.12.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
@@ -29,6 +28,7 @@
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "morgan": "^1.10.0",
-    "prisma": "^5.13.0"
+    "prisma": "^5.13.0",
+    "util": "^0.12.5"
   }
 }
