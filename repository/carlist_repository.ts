@@ -24,6 +24,7 @@ class carListRepository {
               carMerk: carMerk
             }
           },
+          take: 3
         });
         return carList
     } catch (e) {
