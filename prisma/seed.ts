@@ -5,7 +5,7 @@ import * as fs from 'fs';
 const prisma = new PrismaClient();
 
 interface CarRow {
-    id: string;
+    Id: string;
     carType: string;
     carMerk: string;
   }
@@ -26,11 +26,10 @@ const seedCars = async (filePath: string) => {
         .on('data', (data: CarRow) => carDatas.push(data))
         .on('end', async () => {
             const jsonCarDatas: any = carDatas.map(car => ({
-                id: car.id,
+                id: car.Id,
                 carType: car.carType,
                 carMerk: car.carMerk,
             }));
-
             try {
                 const createdCars = await prisma.car.createMany({ data: jsonCarDatas,skipDuplicates: true, });
                 console.log(`Seeded ${createdCars.count} cars`);

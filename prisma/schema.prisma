@@ -25,7 +25,6 @@ model Car {
 }
 model CarList {
   id String @id @default(uuid())
-  car Car @relation(fields: [carId], references: [id])
   carId String
   carYear Int @db.UnsignedInt
   carPrice Int @db.UnsignedInt
@@ -34,4 +33,5 @@ model CarList {
   kmEnd Int @db.UnsignedInt
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  car Car @relation(fields: [carId], references: [id])
 }

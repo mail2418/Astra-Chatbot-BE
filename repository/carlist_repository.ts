@@ -1,11 +1,30 @@
 const { PrismaClient, Prisma } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['query', 'info', 'warn', 'error'],
+});
 
 class carListRepository {
-  async getListCarByCriteria() {
+  async getListCarByCriteria(carType:string,carMerk:string,carPrice:any,carYear:any,kmStart:any) {
+    console.log(carType,carMerk,carPrice,carYear,kmStart)
     try {
         const carList = await prisma.carList.findMany({
-      });
+          where: {
+            carPrice: {
+              lte: carPrice
+            },
+            carYear: {
+              lt: carYear + 5,
+              gte: carYear
+            },
+            kmStart: {
+              gte: kmStart
+            },
+            car: {
+              carType: carType,
+              carMerk: carMerk
+            }
+          },
+        });
         return carList
     } catch (e) {
         console.error("Error in GET list of cars by criteria", e);
@@ -14,7 +33,8 @@ class carListRepository {
   }
   async getListCar() {
     try {
-        const carList = await prisma.carList.findMany();
+        const carList = await prisma.carList.findMany({
+        });
         return carList
     } catch (e) {
         console.error("Error in GET list of cars", e);

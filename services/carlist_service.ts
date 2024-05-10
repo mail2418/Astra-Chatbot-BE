@@ -1,11 +1,17 @@
 const carListRepo = require('../repository/carlist_repository');
 
 class carListService{
-    async getListCarByCriteria(){
-        return carListRepo.getListCarByCriteria()
+    async getListCarByCriteria(carType:string,carMerk:string,carPrice:any,carYear:any,kmStart:any){
+        return await carListRepo.getListCarByCriteria(
+            carType, 
+            carMerk, 
+            carPrice, 
+            carYear, 
+            kmStart
+        )
     }
     async getListCar(){
-        return carListRepo.getListCar()
+        return await carListRepo.getListCar()
     }
 }
 
