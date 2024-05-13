@@ -5,7 +5,6 @@ const prisma = new PrismaClient({
 
 class carListRepository {
   async getListCarByCriteria(carType:string,carMerk:string,carPrice:any,carYear:any,kmStart:any) {
-    console.log(carType,carMerk,carPrice,carYear,kmStart)
     try {
         const carList = await prisma.carList.findMany({
           where: {
@@ -17,12 +16,15 @@ class carListRepository {
               gte: carYear
             },
             kmStart: {
-              gte: kmStart
+              lte: kmStart
             },
             car: {
               carType: carType,
               carMerk: carMerk
             }
+          },
+          include:{
+            car:true
           },
           take: 3
         });

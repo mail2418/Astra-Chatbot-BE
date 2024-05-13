@@ -16,6 +16,7 @@ interface CarListRow {
     carLoan: string;
     kmStart: string;
     kmEnd: string;
+    carPhoto:string;
 }
   
 const seedCars = async (filePath: string) => {
@@ -59,6 +60,7 @@ const seedCarLists = async (filePath: string) => {
                     carLoan: parseInt(car.carLoan),
                     kmStart: parseInt(car.kmStart),
                     kmEnd: parseInt(car.kmEnd),
+                    carPhoto: car.carPhoto
                 }
             });
             console.log(jsonCarListDatas)

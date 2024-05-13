@@ -31,6 +31,7 @@ model CarList {
   carLoan Int @db.UnsignedInt
   kmStart Int @db.UnsignedInt
   kmEnd Int @db.UnsignedInt
+  carPhoto String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   car Car @relation(fields: [carId], references: [id])

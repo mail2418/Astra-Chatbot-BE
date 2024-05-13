@@ -9,7 +9,7 @@ class loanController{
             // const tenure : any = req.params.tenure
             const carsLoanMessages = await loanServices.getLoanCalculation(id,tenure)
             console.log(carsLoanMessages)
-            res.send(carsLoanMessages)
+            res.status(200).send(carsLoanMessages)
         }catch(err){
             console.log(err)
             return res.status(404).json({

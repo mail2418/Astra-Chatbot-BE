@@ -9,8 +9,8 @@ class carListRoutes {
         this.initRoutes()
     }
     initRoutes(){
-        this.router.get('/getlistcarbycriteria', carListController.getListCarsByCriteria)
-        this.router.get('/getlistcars', carListController.getListCars)
+        this.router.post('/getlistcarbycriteria', carListController.getListCarsByCriteria)
+        this.router.post('/getlistcars', carListController.getListCars)
     }
 }
 

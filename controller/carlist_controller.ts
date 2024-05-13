@@ -3,23 +3,19 @@ const carListService = require("../services/carlist_service")
 class carListController {
     async getListCarsByCriteria(req:any,res:any) {
         try{
-            console.log(req.query)
-
-            const carMerk:string = req.query.cartype || "Honda"
-            const carType:string = req.query.carmerk || "Jazz"
-            let kmStart = req.query.kmstart || 200000
-            let carPrice = req.query.carprice || 1000000
-            const carYear:number = parseInt(req.query.caryear) || 2015
+            console.log(req.body.sessionInfo.parameters)
+            const parameters = req.body.sessionInfo.parameters
+            const carType:string = parameters.cartype || "Honda"
+            const carMerk:string = parameters.carmerk || "Jazz"
+            let kmStart = parameters.kmstart || "20.000"
+            let carPrice = parameters.carprice || "200"
+            const carYear:number = parseInt(parameters.caryear) || 2020
 
             kmStart = parseInt(kmStart.split(" ")[0].replace(".",""))
             carPrice = parseInt(carPrice.split(" ")[0].concat("000000"))
 
-            const carLists = await carListService.getListCarByCriteria(carType,carMerk,carPrice,carYear,kmStart)
-            // return res.status(200).json({
-            //     "messages": "success get list of cars by criteria",
-            //     "status":200,
-            //     "data":carLists
-            // })
+            const jsonResponse = await carListService.getListCarByCriteria(carType,carMerk,carPrice,carYear,kmStart)
+            return res.send(jsonResponse)
         }catch(err){
             console.log(err)
             return res.status(404).json({
