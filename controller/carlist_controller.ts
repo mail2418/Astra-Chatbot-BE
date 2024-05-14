@@ -40,6 +40,23 @@ class carListController {
             })
         }
     }
+    async getDetailCarById(req:any,res:any){
+        try{
+            const id = req.params.id
+            const carLists = await carListService.getDetailCarById(id)
+            return res.status(200).json({
+                "messages": "success get detail of car",
+                "status":200,
+                "data":carLists
+            })
+        }catch(err){
+            console.log(err)
+            return res.status(404).json({
+                "messages": "error occured in get detail of car",
+                "status":404,
+            })
+        }
+    }
 }
 
 module.exports = new carListController()

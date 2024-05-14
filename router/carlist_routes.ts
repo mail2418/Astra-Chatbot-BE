@@ -11,6 +11,7 @@ class carListRoutes {
     initRoutes(){
         this.router.post('/getlistcarbycriteria', carListController.getListCarsByCriteria)
         this.router.post('/getlistcars', carListController.getListCars)
+        this.router.get('/getdetailcar/:id', carListController.getDetailCarById)
     }
 }
 

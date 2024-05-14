@@ -27,12 +27,22 @@ class carListService{
                 payload:{
                     "richContent": [
                         [
-                          {
-                            "type": "image",
-                            "rawUrl": carLists[key].carPhoto,
-                            "accessibilityText": `${carLists[key].car.carType} ${carLists[key].car.carMerk}`,
-                          }
-                        ]
+                            {
+                                "type": "image",
+                                "rawUrl": `${carLists[key].carPhoto}`,
+                                "accessibilityText": `${carLists[key].car.carMerk} ${carLists[key].car.carType}`,
+                                "reference": {
+                                    "anchor": {
+                                      "href": `http://localhost:3000/item/${carLists[key].id}` 
+                                    },
+                                }
+                            },
+                            {
+                                "type": "list",
+                                "title": `${carLists[key].car.carMerk} ${carLists[key].car.carType}`,
+                                "subtitle": `Harga Rp${carLists[key].carPrice.toLocaleString("id-ID")}`,                      
+                            }
+                        ],
                     ]
                 }
             }
@@ -42,6 +52,9 @@ class carListService{
     }
     async getListCar(){
         return await carListRepo.getListCar()
+    }
+    async getDetailCarById(id:string){
+        return await carListRepo.getDetailCarById(id)
     }
 }
 

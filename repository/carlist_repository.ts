@@ -36,27 +36,27 @@ class carListRepository {
   }
   async getListCar() {
     try {
-        const carList = await prisma.carList.findMany({
-        });
+        const carList = await prisma.carList.findMany();
         return carList
     } catch (e) {
         console.error("Error in GET list of cars", e);
         throw e;
     }
   }
-  async getCarPriceById(id:string){
+  async getDetailCarById(id:string){
     try {
       const carPrice = await prisma.carList.findUnique({
         where:{
           id:id
         },
-        select:{
-          carPrice: true
+        include:{
+          car:true
         }
       });
       return carPrice
-    }catch(err){
-
+    }catch(e){
+      console.error("Error in GET car detail by Id", e);
+      throw e;
     }
   }
 }
