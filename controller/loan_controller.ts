@@ -2,12 +2,11 @@ const loanServices = require('../services/loan_service')
 class loanController{
     async getLoanCalculation(req:any,res:any) {
         try{
-            const id = "337ac555-f2ef-4168-94a3-f90c220ae604"
-            const tenure = 1 // 1 Bulan
             // console.log(req.body)
-            // const carId : any = req.params.carId
-            // const tenure : any = req.params.tenure
-            const carsLoanMessages = await loanServices.getLoanCalculation(id,tenure)
+            const parameters = req.body.sessionInfo.parameters
+            const tenure = parameters.number | 1
+            const carId = parameters.carid
+            const carsLoanMessages = await loanServices.getLoanCalculation(carId,tenure)
             console.log(carsLoanMessages)
             res.status(200).send(carsLoanMessages)
         }catch(err){

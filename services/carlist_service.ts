@@ -10,8 +10,15 @@ class carListService{
             carYear, 
             kmStart
         )
+        console.log(carLists[0].id)
         let fulfillmentResponse:any = {
             "messages": []
+        }
+        let sessionInfo = {
+            "session":"carId",
+            "parameters":{
+                "carid":carLists[0].id
+            }
         }
         if (carLists.length == 0) {
             let message = {
@@ -48,7 +55,10 @@ class carListService{
             }
             fulfillmentResponse["messages"].push(message)
         });
-        return {fulfillmentResponse}
+        return {
+            fulfillmentResponse,
+            sessionInfo
+        }
     }
     async getListCar(){
         return await carListRepo.getListCar()

@@ -26,7 +26,7 @@ class carListRepository {
           include:{
             car:true
           },
-          take: 3
+          take: 1
         });
         return carList
     } catch (e) {
@@ -45,7 +45,7 @@ class carListRepository {
   }
   async getDetailCarById(id:string){
     try {
-      const carPrice = await prisma.carList.findUnique({
+      const carDetail = await prisma.carList.findUnique({
         where:{
           id:id
         },
@@ -53,10 +53,26 @@ class carListRepository {
           car:true
         }
       });
-      return carPrice
+      return carDetail
     }catch(e){
       console.error("Error in GET car detail by Id", e);
       throw e;
+    }
+  }
+  async getCarPriceById(id:string){
+    try{
+      const carPrice = await prisma.carList.findUnique({
+        where:{
+          id:id
+        },
+        select:{
+          carPrice:true
+        }
+      })
+      return carPrice
+    }catch(e){
+      console.error("Error in GET car price by Id", e);
+      throw e
     }
   }
 }
