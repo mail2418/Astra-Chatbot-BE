@@ -1,8 +1,6 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+const {initializePrisma} = require('../config/prisma_config')
 import csv from 'csv-parser';
 import * as fs from 'fs';
-
-const prisma = new PrismaClient();
 
 interface CarRow {
     Id: string;
@@ -18,7 +16,8 @@ interface CarListRow {
     kmEnd: string;
     carPhoto:string;
 }
-  
+
+const prisma = await initializePrisma()
 const seedCars = async (filePath: string) => {
     const carDatas: CarRow[] = [];
     return new Promise<void>((resolve, reject) => {

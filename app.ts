@@ -11,9 +11,10 @@ class Chatbot {
   port : string | undefined;
   constructor() {
     this.app = express();
-    this.port = process.env.PORT
+    this.port = process.env.PORT || "8080"
     this.configureMiddleware();
     this.configureRoutes();
+    
   }
   configureMiddleware(){
     this.app.use(cors());
@@ -32,8 +33,6 @@ class Chatbot {
     })
   }
 }
-// ======================== INIT ========================
-
 const chatbot = new Chatbot();
 chatbot.start()
 module.exports = chatbot.app

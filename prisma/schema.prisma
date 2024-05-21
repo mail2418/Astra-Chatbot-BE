@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 // ================= MODEL & MIGRATE ===================
 model Car {
   id String @id @unique

@@ -10,7 +10,7 @@ class loanServices{
         this.tloPercentage = 0.0056
     }
     async getLoanCalculation(id:string,tenure:number){
-        const Months = tenure * 12
+        // const Months = tenure * 12
         const carPriceData = await carListRepo.getCarPriceById(id)
         const carPrice = carPriceData.carPrice
         // return carPrice
@@ -21,29 +21,37 @@ class loanServices{
         console.log(downPaymentPrice)
         const initialCost = downPaymentPrice + monthlyPayment + (carPrice * this.insuranceRisk) + (carPrice * this.tloPercentage)
         let total_cost = initialCost
-        let fulfillmentResponse:any = {
-            "messages": [
+        let fulfillmentResponse:any = {}      
+        let message = 
+            [
                 {
                     "payload":{
                         "richContent":[
-                            
+                            [
+                                {
+                                    "type": "accordion",
+                                    "title": "Hasil Perhitungan Kredit",
+                                    "text": `<table><tr><th>Detail</th><th>Nilai</th></tr><tr><td>Total Tenure</td><td>${tenure} Tahun</td></tr><tr><td>Pembayaran Awal</td><td>Rp${initialCost.toLocaleString("id-ID")}</td></tr><tr></tr><tr><td>Pembayaran Perbulan</td><td>Rp${monthlyPayment.toLocaleString("id-ID")}</td></tr><tr></tr><tr><td>Total Harga Mobil</td><td>Rp${(initialCost + (monthlyPayment * (tenure * 12))).toLocaleString("id-ID")}</td></tr></table>`
+                                },
+                                {
+                                    "type": "button",
+                                    "icon": {
+                                      "type": "chevron_right",
+                                      "color": "#0E46A3"
+                                    },
+                                    "text": "Info Selanjutnya",
+                                    "event": {
+                                      "event": "next_action_step"
+                                    }
+                                }
+                            ]
                         ]
-                    }
+                    },
                 }
             ]
-        }
-        let message = {
-            "type":"accordion",
-            "title":"Simulasi Kredit",
-            "text":""
-        }
-        for (let i = 1; i <= Months; i++) {
-            message["text"] += (`Bulan ke-${i}: <b>Rp${(total_cost + monthlyPayment).toLocaleString("id-ID")}</b><br/>`)
-            total_cost += monthlyPayment
-        }
-        fulfillmentResponse["messages"][0]["payload"]["richContent"].push([message])
+        fulfillmentResponse["messages"] = message
         return {
-            "fulfillment_response":fulfillmentResponse
+            "fulfillmentResponse":fulfillmentResponse
         }
     }
 }

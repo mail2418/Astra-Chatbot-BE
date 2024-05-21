@@ -3,7 +3,7 @@ const carListService = require("../services/carlist_service")
 class carListController {
     async getListCarsByCriteria(req:any,res:any) {
         try{
-            // console.log(req.body.sessionInfo.parameters)
+            console.log(req.body.sessionInfo.parameters)
             const parameters = req.body.sessionInfo.parameters
             const carType:string = parameters.cartype || "Honda"
             const carMerk:string = parameters.carmerk || "Jazz"

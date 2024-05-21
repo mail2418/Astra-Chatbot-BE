@@ -10,24 +10,23 @@ class carListService{
             carYear, 
             kmStart
         )
-        console.log(carLists[0].id)
         let fulfillmentResponse:any = {
             "messages": []
-        }
-        let sessionInfo = {
-            "session":"carId",
-            "parameters":{
-                "carid":carLists[0].id
-            }
         }
         if (carLists.length == 0) {
             let message = {
                 text: {
-                    text: ["Maaf tidak ada mobil yang sesuai dengan kriteria yang anda cari"],
+                    text: ["<b>Maaf tidak ada mobil yang sesuai dengan kriteria yang anda cari</b>"],
                 },
             }
             fulfillmentResponse["messages"].push(message)
             return {fulfillmentResponse}
+        }
+        let sessionInfo = {
+            "session":"carId",
+            "parameters":{
+                "carid":carLists[0]?.id
+            }
         }
         Object.keys(carLists).forEach((key) => {
             let message = {
@@ -47,7 +46,7 @@ class carListService{
                             {
                                 "type": "list",
                                 "title": `${carLists[key].car.carMerk} ${carLists[key].car.carType}`,
-                                "subtitle": `Harga Rp${carLists[key].carPrice.toLocaleString("id-ID")}`,                      
+                                "subtitle": `Harga Rp${carLists[key].carPrice.toLocaleString("id-ID")}, Tahun ${carLists[key].carYear}, Kilometer ${carLists[key].kmStart.toLocaleString('id-ID')}`,                      
                             }
                         ],
                     ]
