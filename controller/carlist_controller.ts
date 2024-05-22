@@ -12,8 +12,28 @@ class carListController {
             const carYear:number = parseInt(parameters.caryear) || 2020
 
             kmStart = parseInt(kmStart.split(" ")[0].replace(".",""))
-            carPrice = parseInt(carPrice.split(" ")[0].concat("000000"))
+            let carPriceCondition = carPrice.split(" ")
 
+            if(carPriceCondition.length > 1){
+                let result_calculation = 0
+                let i = 0
+                while(i < carPriceCondition.length){
+                    console.log(carPriceCondition[i])
+                    if(carPriceCondition[i+1] == "miliar" || carPriceCondition[i+1] === "milyar"){
+                        result_calculation += parseInt(carPriceCondition[i].concat("000000000"))
+                    }
+                    else if(carPriceCondition[i+1] == "juta"){
+                        result_calculation += parseInt(carPriceCondition[i].concat("000000"))
+                    }  
+                    i = i + 2
+                }
+                carPrice = result_calculation
+            }
+            else{
+                carPrice = parseInt("534.000.000".replace(/\./g, ""))
+            }
+            console.log(carPrice)
+            // console.log(kmStart)
             const jsonResponse = await carListService.getListCarByCriteria(carType,carMerk,carPrice,carYear,kmStart)
             return res.send(jsonResponse)
         }catch(err){
