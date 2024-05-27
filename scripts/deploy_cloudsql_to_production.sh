@@ -2,16 +2,12 @@
 cd "$(dirname "$0")"
 
 # Load environment variables from .env
-export $(grep -v '^#' .env.production | xargs)
+export $(grep -v '^#' ../.env.production | xargs)
 
 # Prepare environment variables for the gcloud command
-ENV_VARS=$(grep -v '^#' .env.production | grep -v '^GOOGLE_APPLICATION_CREDENTIALS=' | xargs | sed 's/ /,/g')
+ENV_VARS=$(grep -v '^#' ../.env.production | grep -v '^GOOGLE_APPLICATION_CREDENTIALS=' | xargs | sed 's/ /,/g')
 
-# Build the Docker image
-# gcloud builds submit \
-#   --tag docker.pkg.dev/$GCP_PROJECT_ID/$GCP_CLOUD_BUILD_IMAGE_TAG
-
-# Deploy to Cloud Run
+# Deploy to Cloud Run using Docker Hub Image
 gcloud run deploy $GCP_CLOUD_RUN_DEPLOY_ID \
   --image docker.io/$GCP_CLOUD_BUILD_IMAGE_TAG \
   --platform managed \

@@ -1,5 +1,7 @@
+// Import the car List services module which contains the business logic for car category 
 const carService = require("../services/car_service")
 
+// Define the carController class
 class carController {
     async getCars(req:any,res:any) {
         try{

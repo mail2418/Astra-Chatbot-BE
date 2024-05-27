@@ -14,7 +14,7 @@ trap cleanup EXIT
 cd "$(dirname "$0")"
 
 # Load environment variables from .env
-export $(grep -v '^#' .env.production | xargs)
+export $(grep -v '^#' ../.env.production | xargs)
 
 # ./cloud-sql-proxy $GCP_CLOUD_SQL_INSTANCE_CONNECTION_NAME --port=3307
 

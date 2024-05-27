@@ -9,8 +9,7 @@ class loanServices{
         this.insuranceRisk = 0.042
         this.tloPercentage = 0.0056
     }
-    async getLoanCalculation(id:string,tenure:number){
-        // const Months = tenure * 12
+    async getLoanCalculation(id:string,tenure:any){
         const carPriceData = await carListRepo.getCarPriceById(id)
         const carPrice = carPriceData.carPrice
         // return carPrice

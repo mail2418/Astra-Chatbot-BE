@@ -1,16 +1,19 @@
 import type { Router } from "express";
-const express = require("express")
-const carController = require("../controller/car_controller")
+const express = require("express");
+// Import the car controller which contains the handler functions for the routes
+const carController = require("../controller/car_controller");
 
 class carRoutes {
-    router: Router
+    router: Router;
     constructor(){
-        this.router = express.Router()
-        this.initRoutes()
+        // Create a new router instance from Express
+        this.router = express.Router();
+        // Initialize the routes by calling the initRoutes method
+        this.initRoutes();
     }
     initRoutes(){
-        this.router.get('/getcars', carController.getCars)
+        this.router.get('/getcars', carController.getCars);
     }
 }
 
-module.exports = new carRoutes().router
+module.exports = new carRoutes().router;

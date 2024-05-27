@@ -1,9 +1,11 @@
+// Import the car List services module which contains the business logic for list of cars 
 const carListService = require("../services/carlist_service")
 
+// Define the carListController class
 class carListController {
     async getListCarsByCriteria(req:any,res:any) {
         try{
-            console.log(req.body.sessionInfo.parameters)
+            // req.body.sessionInfo.parameters are parameters from dialogflow
             const parameters = req.body.sessionInfo.parameters
             const carType:string = parameters.cartype || "Honda"
             const carMerk:string = parameters.carmerk || "Jazz"
@@ -18,7 +20,6 @@ class carListController {
                 let result_calculation = 0
                 let i = 0
                 while(i < carPriceCondition.length){
-                    console.log(carPriceCondition[i])
                     if(carPriceCondition[i+1] == "miliar" || carPriceCondition[i+1] === "milyar"){
                         result_calculation += parseInt(carPriceCondition[i].concat("000000000"))
                     }
@@ -32,8 +33,6 @@ class carListController {
             else{
                 carPrice = parseInt("534.000.000".replace(/\./g, ""))
             }
-            console.log(carPrice)
-            // console.log(kmStart)
             const jsonResponse = await carListService.getListCarByCriteria(carType,carMerk,carPrice,carYear,kmStart)
             return res.send(jsonResponse)
         }catch(err){
